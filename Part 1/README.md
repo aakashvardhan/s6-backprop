@@ -20,4 +20,6 @@ The backpropagation algorithm consists of two main steps. In the forward pass, t
 
 To understand backpropagation better, let's work through an example. We'll use a simple neural network with one input layers, two hidden layer, and one output layers. The input layer has two neurons, the hidden layer has two neurons, and the output layer has two neurons. We'll use the sigmoid activation function for the hidden layer, and the identity activation function for the output layer. We'll use mean squared error as the loss function.
 
-![Neural Network](simple-nn.png)
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{simple-nn.png}
+\end{center}
