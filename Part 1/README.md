@@ -24,4 +24,11 @@ To understand backpropagation better, let's work through an example. We'll use a
   <img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/simple-nn.png" width="60%" />
 </p>
 
-- $i_{1}$ and $i_{2}$ are the inputs to the network. 
+- $i_{1}$ and $i_{2}$ are the inputs to the network, which are connected to hidden layer neurons $h_{1}$ and $h_{2}$
+- $h_{1}$ neuron is connected to both inputs by weights $w_{1}$ and $w_{2}$
+- $h_{2}$ neuron is connected to both inputs by weights $w_{3}$ and $w_{4}$
+- $h_{1}$ and $h_{2}$ are connected to output layer neurons $o_{1}$ and $o_{2}$ by weights $w_{5}$, $w_{6}$, $w_{7}$, and $w_{8}$
+- Activation function $a_{h_{1}}$ and $a_{h_{2}}$ is applied to the output of the hidden layer neurons
+- Activation function $a_{o_{1}}$ and $a_{o_{2}}$ is applied to the output of the output layer neurons
+- $t_{1}$ and $t_{2}$ are the target outputs
+- $a_{o_{1}}$$(w_{7})$ and $a_{o_{2}}$
