@@ -8,9 +8,6 @@ Backpropagation is a method used in artificial neural networks to calculate the 
 
 The backpropagation algorithm works by computing the gradient of the loss function with respect to the weights of the network. To do this, we need the derivative of the loss function with respect to the output of the network, and the derivative of the output of the network with respect to the weights. Using the chain rule, we can compute the derivative of the loss function with respect to the weights.
 
-## The Chain Rule
-
-The chain rule is a formula to compute the derivative of a composite function. If we have a function `y = f(u)` and `u = g(x)`, then the derivative of `y` with respect to `x` is given by `dy/dx = dy/du * du/dx`. In the context of backpropagation, `y` is the loss function, `u` is the output of the neural network, and `x` is the weights of the network.
 
 ## The Backpropagation Algorithm
 
@@ -57,7 +54,7 @@ For backpropagation, we need to calculate the partial derivative of the error wi
 
 #### Output Layer
 
-- Gradient of $E_{total}$ with respect to $w_{5}$ is given by $\frac{∂E_{total}}{∂w_{5}} = \frac{∂E_{1}}{∂w_{5}}
+- Gradient of $E_{total}$ with respect to $w_{5}$ is given by $\frac{∂E_{total}}{∂w_{5}} = \frac{∂E_{1}}{∂w_{5}}$
 * $w_{5}$ has no effect on $E_{2}$, so $\frac{∂E_{2}}{∂w_{5}} = 0$
 
 The above equation can be further expanded as:
