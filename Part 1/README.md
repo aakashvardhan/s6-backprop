@@ -31,3 +31,11 @@ To understand backpropagation better, let's work through an example. We'll use a
 - Activation function $a_{h_{1}}$ and $a_{h_{2}}$ is applied to the output of the hidden layer neurons
 - Activation function $a_{o_{1}}$ and $a_{o_{2}}$ is applied to the output of the output layer neurons
 - Error is calculated using mean squared error loss function $E_{total} = E_{1} + E_{2} = \frac{1}{2}(target_{1} - output_{1})^{2} + \frac{1}{2}(target_{2} - output_{2})^{2}$
+- $t_{1}$ and $t_{2}$ are the target values for the output layer neurons
+
+This can be mathematically represented as:
+
+- $h_{1} = i_{1}w_{1} + i_{2}w_{2}$
+- $h_{2} = i_{1}w_{3} + i_{2}w_{4}$
+
+- $a_{h_{1}} = $\sigma(h_{1}) = $\frac{1}{1 + e^{-h_{1}}}$
