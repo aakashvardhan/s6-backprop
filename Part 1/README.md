@@ -34,49 +34,49 @@ To understand backpropagation better, let's work through an example. We'll use a
 
 ### Forward Pass:
 Calculate the input to the hidden layer neurons:
-$$ h1 = w1 \cdot i1 + w2 \cdot i2 $$
-$$ h2 = w3 \cdot i1 + w4 \cdot i2 $$
+$h1 = w1 \cdot i1 + w2 \cdot i2$
+$h2 = w3 \cdot i1 + w4 \cdot i2$
 
-Apply the activation function (like sigmoid, ReLU, etc.) to the hidden layer inputs:
-$$ a_{h1} = activation(h1) $$
-$$ a_{h2} = activation(h2) $$
+Apply the activation function (like sigmoid etc.) to the hidden layer inputs:
+$a_{h1} = activation(h1)$
+$a_{h2} = activation(h2)$
 
 Calculate the input to the output layer neurons:
-$$ o1 = w5 \cdot a_{h1} + w6 \cdot a_{h2} $$
-$$ o2 = w7 \cdot a_{h1} + w8 \cdot a_{h2} $$
+$o1 = w5 \cdot a_{h1} + w6 \cdot a_{h2}$
+$o2 = w7 \cdot a_{h1} + w8 \cdot a_{h2}$
 
 Apply the activation function to the output layer inputs to get the actual outputs:
-$$ a_{o1} = activation(o1) $$
-$$ a_{o2} = activation(o2) $$
+$a_{o1} = σ(o1)$
+$a_{o2} = σ(o2)$
 
 ### Loss Calculation:
 Calculate the error for each output neuron (assuming a mean squared error function):
-$$ E1 = \frac{1}{2} (target1 - a_{o1})^2 $$
-$$ E2 = \frac{1}{2} (target2 - a_{o2})^2 $$
+$E1 = \frac{1}{2} (target1 - a_{o1})^2$
+$E2 = \frac{1}{2} (target2 - a_{o2})^2$
 
 Total error for the network:
-$$ E_{Total} = E1 + E2 $$
+$E_{Total} = E1 + E2$
 
 ### Backward Pass (assuming sigmoid activation function for simplicity):
 Calculate the gradient of the error with respect to the output activations:
-$$ \frac{\partial E_{Total}}{\partial a_{o1}} = -(target1 - a_{o1}) $$
-$$ \frac{\partial E_{Total}}{\partial a_{o2}} = -(target2 - a_{o2}) $$
+$\frac{\partial E_{Total}}{\partial a_{o1}} = -(target1 - a_{o1})$
+$\frac{\partial E_{Total}}{\partial a_{o2}} = -(target2 - a_{o2})$
 
 Calculate the gradient of the error with respect to the net input of the output neurons (derivative of the activation function):
-$$ \frac{\partial E_{Total}}{\partial o1} = \frac{\partial E_{Total}}{\partial a_{o1}} \cdot \frac{\partial a_{o1}}{\partial o1} $$
-$$ \frac{\partial E_{Total}}{\partial o2} = \frac{\partial E_{Total}}{\partial a_{o2}} \cdot \frac{\partial a_{o2}}{\partial o2} $$
+$\frac{\partial E_{Total}}{\partial o1} = \frac{\partial E_{Total}}{\partial a_{o1}} \cdot \frac{\partial a_{o1}}{\partial o1}$
+$\frac{\partial E_{Total}}{\partial o2} = \frac{\partial E_{Total}}{\partial a_{o2}} \cdot \frac{\partial a_{o2}}{\partial o2}$
 
 Update the weights between hidden and output layers:
-$$ \Delta w5 = -\eta \cdot \frac{\partial E_{Total}}{\partial o1} \cdot a_{h1} $$
-$$ \Delta w6 = -\eta \cdot \frac{\partial E_{Total}}{\partial o1} \cdot a_{h2} $$
-$$ \Delta w7 = -\eta \cdot \frac{\partial E_{Total}}{\partial o2} \cdot a_{h1} $$
-$$ \Delta w8 = -\eta \cdot \frac{\partial E_{Total}}{\partial o2} \cdot a_{h2} $$
+$\Delta w5 = -\eta \cdot \frac{\partial E_{Total}}{\partial o1} \cdot a_{h1}$
+$\Delta w6 = -\eta \cdot \frac{\partial E_{Total}}{\partial o1} \cdot a_{h2}$
+$\Delta w7 = -\eta \cdot \frac{\partial E_{Total}}{\partial o2} \cdot a_{h1}$
+$\Delta w8 = -\eta \cdot \frac{\partial E_{Total}}{\partial o2} \cdot a_{h2}$
 
 Calculate the gradients for the hidden layer weights by propagating the errors back through the network (not explicitly shown here for brevity).
 
 ### Weights Update:
 The weights are then updated by subtracting the product of the learning rate (η) and the calculated deltas:
-$$ w5 = w5 + \Delta w5 $$
-$$ w6 = w6 + \Delta w6 $$
-$$ w7 = w7 + \Delta w7 $$
-$$ w8 = w8 + \Delta w8 $$
+$w5 = w5 + \Delta w5$
+$w6 = w6 + \Delta w6$
+$w7 = w7 + \Delta w7$
+$w8 = w8 + \Delta w8$
