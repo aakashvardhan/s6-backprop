@@ -38,4 +38,4 @@ This can be mathematically represented as:
 - $h_{1} = i_{1}w_{1} + i_{2}w_{2}$
 - $h_{2} = i_{1}w_{3} + i_{2}w_{4}$
 
-- $a_{h_{1}} = $\sigma(h_{1}) = $\frac{1}{1 + e^{-h_{1}}}$
+- $a_{h_{1}} = σ($h_{1}$) = 1/(1 + exp(-$h_{1}$))
