@@ -30,36 +30,53 @@ To understand backpropagation better, let's work through an example. We'll use a
 - Error is calculated using mean squared error loss function $E_{total} = E_{1} + E_{2} = \frac{1}{2}(target_{1} - output_{1})^{2} + \frac{1}{2}(target_{2} - output_{2})^{2}$
 - $t_{1}$ and $t_{2}$ are the target values for the output layer neurons
 
-This can be mathematically represented as:
+## Backpropagation Mathematical Expressions
 
-- $h_{1} = i_{1}w_{1} + i_{2}w_{2}$
-- $h_{2} = i_{1}w_{3} + i_{2}w_{4}$
+### Forward Pass:
+Calculate the input to the hidden layer neurons:
+$$ h1 = w1 \cdot i1 + w2 \cdot i2 $$
+$$ h2 = w3 \cdot i1 + w4 \cdot i2 $$
 
-- $a_{h_{1}} = σ(h_{1}) = \frac{1}{(1 + exp(-1*h_{1}))}$
-- $a_{h_{2}} = σ(h_{2}) = \frac{1}{(1 + exp(-1*h_{2}))}$
+Apply the activation function (like sigmoid, ReLU, etc.) to the hidden layer inputs:
+$$ a_{h1} = activation(h1) $$
+$$ a_{h2} = activation(h2) $$
 
-- $o_{1} = a_{h_{1}}w_{5} + a_{h_{2}}w_{6}$
-- $o_{2} = a_{h_{1}}w_{7} + a_{h_{2}}w_{8}$
+Calculate the input to the output layer neurons:
+$$ o1 = w5 \cdot a_{h1} + w6 \cdot a_{h2} $$
+$$ o2 = w7 \cdot a_{h1} + w8 \cdot a_{h2} $$
 
-- $a_{o_{1}} = σ(o_{1})$
-- $a_{o_{2}} = σ(o_{2})$
+Apply the activation function to the output layer inputs to get the actual outputs:
+$$ a_{o1} = activation(o1) $$
+$$ a_{o2} = activation(o2) $$
 
-* σ is the sigmoid activation function
+### Loss Calculation:
+Calculate the error for each output neuron (assuming a mean squared error function):
+$$ E1 = \frac{1}{2} (target1 - a_{o1})^2 $$
+$$ E2 = \frac{1}{2} (target2 - a_{o2})^2 $$
 
-### Chain Rule
+Total error for the network:
+$$ E_{Total} = E1 + E2 $$
 
-For backpropagation, we need to calculate the partial derivative of the error with respect to the weights. We can use the chain rule to calculate this. The chain rule states that if we have a composite function `y = f(g(x))`, then the derivative of `y` with respect to `x` is given by `dy/dx = dy/du * du/dx`, where `u = g(x)`. In the context of backpropagation, `y` is the error, `u` is the output of the network, and `x` is the weights of the network.
+### Backward Pass (assuming sigmoid activation function for simplicity):
+Calculate the gradient of the error with respect to the output activations:
+$$ \frac{\partial E_{Total}}{\partial a_{o1}} = -(target1 - a_{o1}) $$
+$$ \frac{\partial E_{Total}}{\partial a_{o2}} = -(target2 - a_{o2}) $$
 
-- This can be mathematically represented as:
+Calculate the gradient of the error with respect to the net input of the output neurons (derivative of the activation function):
+$$ \frac{\partial E_{Total}}{\partial o1} = \frac{\partial E_{Total}}{\partial a_{o1}} \cdot \frac{\partial a_{o1}}{\partial o1} $$
+$$ \frac{\partial E_{Total}}{\partial o2} = \frac{\partial E_{Total}}{\partial a_{o2}} \cdot \frac{\partial a_{o2}}{\partial o2} $$
 
-#### Output Layer
+Update the weights between hidden and output layers:
+$$ \Delta w5 = -\eta \cdot \frac{\partial E_{Total}}{\partial o1} \cdot a_{h1} $$
+$$ \Delta w6 = -\eta \cdot \frac{\partial E_{Total}}{\partial o1} \cdot a_{h2} $$
+$$ \Delta w7 = -\eta \cdot \frac{\partial E_{Total}}{\partial o2} \cdot a_{h1} $$
+$$ \Delta w8 = -\eta \cdot \frac{\partial E_{Total}}{\partial o2} \cdot a_{h2} $$
 
-- Gradient of $E_{total}$ with respect to $w_{5}$ is given by $\frac{∂E_{total}}{∂w_{5}} = \frac{∂E_{1}}{∂w_{5}}$
-* $w_{5}$ has no effect on $E_{2}$, so $\frac{∂E_{2}}{∂w_{5}} = 0$
+Calculate the gradients for the hidden layer weights by propagating the errors back through the network (not explicitly shown here for brevity).
 
-The above equation can be further expanded as:
-
-- $\frac{∂E_{1}}{∂w_{5}} = \frac{∂E_{1}}{∂o_{1}} * \frac{∂o_{1}}{∂w_{5}}$
-
-
-#### Hidden Layer Weights ($w_{5}$, $w_{6}$, $w_{7}$, $w_{8}$)
+### Weights Update:
+The weights are then updated by subtracting the product of the learning rate (η) and the calculated deltas:
+$$ w5 = w5 + \Delta w5 $$
+$$ w6 = w6 + \Delta w6 $$
+$$ w7 = w7 + \Delta w7 $$
+$$ w8 = w8 + \Delta w8 $$
