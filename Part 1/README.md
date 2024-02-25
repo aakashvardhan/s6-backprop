@@ -23,3 +23,4 @@ To understand backpropagation better, let's work through an example. We'll use a
 <p align="center">
   <img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/simple-nn.png" width="60%" />
 </p>
+
