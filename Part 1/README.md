@@ -34,7 +34,7 @@ To understand backpropagation better, let's work through an example. We'll use a
 - $t_{1}$ and $t_{2}$ are the target values for the output layer neurons
 
 This can be mathematically represented as:
-
+<p align="center">
 - $h_{1} = i_{1}w_{1} + i_{2}w_{2}$
 - $h_{2} = i_{1}w_{3} + i_{2}w_{4}$
 
@@ -48,11 +48,15 @@ This can be mathematically represented as:
 - $a_{o_{2}} = σ(o_{2})$
 
 * σ is the sigmoid activation function
-
+</p>
 ### Chain Rule
 
-For backpropagation, we need to calculate the derivative of the loss function with respect to the weights. We can use the chain rule to calculate this. The derivative of the loss function with respect to the weights is given by:
+For backpropagation, we need to calculate the partial derivative of the error with respect to the weights. We can use the chain rule to calculate this. The chain rule states that if we have a composite function `y = f(g(x))`, then the derivative of `y` with respect to `x` is given by `dy/dx = dy/du * du/dx`, where `u = g(x)`. In the context of backpropagation, `y` is the error, `u` is the output of the network, and `x` is the weights of the network.
 
-$\frac{dE_{total}}{dw_{i}} = \frac{dE_{total}}{da_{o_{i}}} * \frac{da_{o_{i}}}{do_{i}} * \frac{do_{i}}{dw_{i}}$
+- This can be mathematically represented as:
 
-Where $i = 1, 2, 3, 4, 5, 6, 7, 8$
+#### Output Layer
+- $\frac{\partial E_{total}}{\partial w_{5}} = \frac{\partial E_{total}}{\partial a_{o_{1}}} * \frac{\partial a_{o_{1}}}{\partial o_{1}} * \frac{\partial o_{1}}{\partial w_{5}}$
+
+
+#### Hidden Layer Weights ($w_{5}$, $w_{6}$, $w_{7}$, $w_{8}$)
