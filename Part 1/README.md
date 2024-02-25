@@ -48,3 +48,11 @@ This can be mathematically represented as:
 - $a_{o_{2}} = σ(o_{2})$
 
 * σ is the sigmoid activation function
+
+### Chain Rule
+
+For backpropagation, we need to calculate the derivative of the loss function with respect to the weights. We can use the chain rule to calculate this. The derivative of the loss function with respect to the weights is given by:
+
+$\frac{dE_{total}}{dw_{i}} = \frac{dE_{total}}{da_{o_{i}}} * \frac{da_{o_{i}}}{do_{i}} * \frac{do_{i}}{dw_{i}}$
+
+Where $i = 1, 2, 3, 4, 5, 6, 7, 8$
