@@ -39,3 +39,12 @@ This can be mathematically represented as:
 - $h_{2} = i_{1}w_{3} + i_{2}w_{4}$
 
 - $a_{h_{1}} = σ(h_{1}) = \frac{1}{(1 + exp(-1*h_{1}))}$
+- $a_{h_{2}} = σ(h_{2}) = \frac{1}{(1 + exp(-1*h_{2}))}$
+
+- $o_{1} = a_{h_{1}}w_{5} + a_{h_{2}}w_{6}$
+- $o_{2} = a_{h_{1}}w_{7} + a_{h_{2}}w_{8}$
+
+- $a_{o_{1}} = σ(o_{1})$
+- $a_{o_{2}} = σ(o_{2})$
+
+* σ is the sigmoid activation function
