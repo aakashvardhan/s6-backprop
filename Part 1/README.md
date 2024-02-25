@@ -80,3 +80,31 @@ The weights are then updated by subtracting the product of the learning rate (η
 - $w_{6} = w_{6} + \Delta w_{6}$
 - $w_{7} = w_{7} + \Delta w_{7}$
 - $w_{8} = w_{8} + \Delta w_{8}$
+
+
+## Results
+
+Shown below are the effects of learning rate on the convergence of the backpropagation algorithm. The learning rate is a hyperparameter that controls how much to change the model in response to the estimated error each time the model weights are updated. A smaller learning rate requires more training epochs given the smaller changes made to the weights each update, and a larger learning rate may cause the model to converge too quickly, which may result in the model overshooting the optimal weights.
+
+<table>
+  <tr>
+    <td><img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/error_graph_lr/0.1.png" alt="Plot 1" style="width: 100%;"/></td>
+    <td><img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/error_graph_lr/0.2.png" alt="Plot 2" style="width: 100%;"/></td>
+    <td><img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/error_graph_lr/0.5.png" alt="Plot 3" style="width: 100%;"/></td>
+  </tr>
+  <tr>
+    <td align="center">Caption for Plot 1</td>
+    <td align="center">Caption for Plot 2</td>
+    <td align="center">Caption for Plot 3</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/error_graph_lr/0.8.png" alt="Plot 4" style="width: 100%;"/></td>
+    <td><img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/error_graph_lr/1.0.png" alt="Plot 5" style="width: 100%;"/></td>
+    <td><img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/error_graph_lr/2.0.png" alt="Plot 6" style="width: 100%;"/></td>
+  </tr>
+  <tr>
+    <td align="center">Caption for Plot 4</td>
+    <td align="center">Caption for Plot 5</td>
+    <td align="center">Caption for Plot 6</td>
+  </tr>
+</table>
