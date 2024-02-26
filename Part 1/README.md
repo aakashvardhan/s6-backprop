@@ -111,8 +111,7 @@ Shown below are the effects of learning rate on the convergence of the backpropa
 
 ### LR = 0.1
 
-<table border="1">
-    <caption>Summary of Updated Learning Parameters and Results</caption>
+<table align="center" border="1">
     <thead>
         <tr>
             <th>Parameter</th>
@@ -126,9 +125,9 @@ Shown below are the effects of learning rate on the convergence of the backpropa
         </tr>
         <tr>
             <td>Final weights</td>
-            <td>0.14759022399188299, 0.19518044798376574, 0.24728683077459623, <br>
+            <td>[0.14759022399188299, 0.19518044798376574, 0.24728683077459623, <br>
                 0.29457366154919246, 0.28734129806637, 0.3365100307893313, <br>
-                0.36374351855021364, 0.4127381404881795</td>
+                0.36374351855021364, 0.4127381404881795]</td>
         </tr>
         <tr>
             <td>Final error</td>
