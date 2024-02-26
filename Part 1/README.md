@@ -94,8 +94,8 @@ Shown below are the effects of learning rate on the convergence of the backpropa
   </tr>
   <tr>
     <td align="center">LR = 0.1</td>
-    <td align="center">Caption for Plot 2</td>
-    <td align="center">Caption for Plot 3</td>
+    <td align="center">LR = 0.2</td>
+    <td align="center">LR = 0.5</td>
   </tr>
   <tr>
     <td><img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/error_graph_lr/0.8.png" alt="Plot 4" style="width: 100%;"/></td>
@@ -103,8 +103,15 @@ Shown below are the effects of learning rate on the convergence of the backpropa
     <td><img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/error_graph_lr/2.0.png" alt="Plot 6" style="width: 100%;"/></td>
   </tr>
   <tr>
-    <td align="center">Caption for Plot 4</td>
-    <td align="center">Caption for Plot 5</td>
-    <td align="center">Caption for Plot 6</td>
+    <td align="center">LR = 0.8</td>
+    <td align="center">LR = 1.0</td>
+    <td align="center">LR = 2.0</td>
   </tr>
 </table>
+
+### LR = 0.1
+
+- Learning rate:  0.2
+- Final weights:  0.14559145085691055 0.1911829017138207 0.2448975840546724 0.2897951681093448 0.1410041832582521 0.18909909371537825 0.18299706819313005 0.2306653858518859
+- Final error:  0.0022794087728258373
+- Final output:  0.5421529528784338 0.5527441571103399
