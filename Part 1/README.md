@@ -21,16 +21,27 @@ To understand backpropagation better, let's work through an example. We'll use a
   <img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/simple-nn.png" width="60%" />
 </p>
 
-- $i_{1}$ and $i_{2}$ are the inputs to the network, which are connected to hidden layer neurons $h_{1}$ and $h_{2}$
-- $h_{1}$ neuron is connected to both inputs by weights $w_{1}$ and $w_{2}$
-- $h_{2}$ neuron is connected to both inputs by weights $w_{3}$ and $w_{4}$
-- $h_{1}$ and $h_{2}$ are connected to output layer neurons $o_{1}$ and $o_{2}$ by weights $w_{5}$, $w_{6}$, $w_{7}$, and $w_{8}$
-- Activation function $a_{h_{1}}$ and $a_{h_{2}}$ is applied to the output of the hidden layer neurons
-- Activation function $a_{o_{1}}$ and $a_{o_{2}}$ is applied to the output of the output layer neurons
-- Error is calculated using mean squared error loss function $E_{total} = E_{1} + E_{2} = \frac{1}{2}(target_{1} - output_{1})^{2} + \frac{1}{2}(target_{2} - output_{2})^{2}$
-- $t_{1}$ and $t_{2}$ are the target values for the output layer neurons
 
-To make the explanation of backpropagation and its mathematical expressions clearer and easier to recall, let's break it down into more detailed steps and organize the information more coherently:
+### Network Inputs and Connections:
+- **Inputs (i_{1} and i_{2})**: These are the initial data points fed into the network. In many practical scenarios, these inputs could represent features of a dataset, such as pixels in an image or attributes of a dataset in machine learning tasks.
+- **Hidden Layer Neurons (h_{1} and h_{2})**: These neurons form an intermediary processing layer that captures complex patterns by combining inputs through weighted connections. 
+  - h_{1} neuron receives signals from both i_{1} and i_{2}, modulated by weights w_{1} and w_{2} respectively. These weights determine the influence of each input on the neuron's output.
+  - Similarly, h_{2} neuron is influenced by i_{1} and i_{2} through weights w_{3} and w_{4}.
+
+### Processing and Activation Functions:
+- **Activation Functions for Hidden Layer (a_{h_{1}} and a_{h_{2}})**: After computing the weighted sum of inputs, an activation function is applied to introduce non-linearity. This allows the network to learn and model complex relationships. Common choices include sigmoid, ReLU, and tanh. The sigmoid function, for instance, outputs a value between 0 and 1, making it interpretable as a probability or a degree of activation.
+- **Activation Functions for Output Layer (a_{o_{1}} and a_{o_{2}})**: Similar to the hidden layer, the output neurons' weighted sums are passed through an activation function. The choice of function here depends on the nature of the task (e.g., softmax for classification).
+
+### Weighted Connections to Output Layer:
+- The outputs of h_{1} and h_{2} are linked to the final output neurons o_{1} and o_{2} via weights w_{5}, w_{6}, w_{7}, and w_{8}. These weights play a crucial role in shaping the final predictions of the network.
+
+### Error Calculation and Targets:
+- **Mean Squared Error Loss Function**: The network's performance is evaluated by calculating the error (loss) between its predictions and the actual target values. Mean squared error (MSE) is a common choice for regression tasks, capturing the average squared difference between targets and predictions.
+- **Targets (t_{1} and t_{2})**: These are the ground truth values that the network aims to predict. The difference between the network's outputs and these targets forms the basis of the error calculation, guiding the network's learning through backpropagation.
+
+### Backpropagation and Learning:
+- The calculated error is propagated back through the network, informing adjustments to the weights (w_{1} through w_{8}). This process relies on the derivative of the error with respect to each weight, incorporating the chain rule for derivatives. The ultimate goal is to minimize the total error by iteratively updating the weights in the direction that most reduces the error.
+
 
 ### Forward Pass
 1. **Input to Hidden Layer Calculations**:
