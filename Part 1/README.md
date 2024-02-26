@@ -111,20 +111,32 @@ Shown below are the effects of learning rate on the convergence of the backpropa
 
 ### LR = 0.1
 
-\begin{table}[h]
-\centering
-\begin{tabular}{l|l}
-\hline
-\textbf{Parameter}    & \textbf{Value} \\
-\hline
-Learning rate        & 0.1 \\
-Final weights        & 0.14759022399188299, 0.19518044798376574, 0.24728683077459623, \\
-                     & 0.29457366154919246, 0.28734129806637, 0.3365100307893313, \\
-                     & 0.36374351855021364, 0.4127381404881795 \\
-Final error          & 0.00789511004702777 \\
-Final output         & 0.5789273692584652, 0.5977787833632298 \\
-\hline
-\end{tabular}
-\caption{Summary of Updated Learning Parameters and Results}
-\label{table:updated_learning_summary}
-\end{table}
+<table border="1">
+    <caption>Summary of Updated Learning Parameters and Results</caption>
+    <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Learning rate</td>
+            <td>0.1</td>
+        </tr>
+        <tr>
+            <td>Final weights</td>
+            <td>0.14759022399188299, 0.19518044798376574, 0.24728683077459623, <br>
+                0.29457366154919246, 0.28734129806637, 0.3365100307893313, <br>
+                0.36374351855021364, 0.4127381404881795</td>
+        </tr>
+        <tr>
+            <td>Final error</td>
+            <td>0.00789511004702777</td>
+        </tr>
+        <tr>
+            <td>Final output</td>
+            <td>0.5789273692584652, 0.5977787833632298</td>
+        </tr>
+    </tbody>
+</table>
