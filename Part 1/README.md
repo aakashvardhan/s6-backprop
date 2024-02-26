@@ -13,7 +13,6 @@ The backpropagation algorithm works by computing the gradient of the loss functi
 
 The backpropagation algorithm consists of two main steps. In the forward pass, the input is passed through the network, and the output of the network is computed. In the backward pass, the gradient of the loss function with respect to the output of the network is computed, and then the gradient of the loss function with respect to the weights of the network is computed using the chain rule. The weights of the network are then updated using gradient descent.
 
-## Tutorial
 
 To understand backpropagation better, let's work through an example. We'll use a simple neural network with one input layers, two hidden layer, and one output layers. The input layer has two neurons, the hidden layer has two neurons, and the output layer has two neurons. We'll use the sigmoid activation function for the hidden layer, and the identity activation function for the output layer. We'll use mean squared error as the loss function.
 
@@ -21,87 +20,87 @@ To understand backpropagation better, let's work through an example. We'll use a
   <img src="https://github.com/aakashvardhan/s6-backprop/blob/main/Part%201/simple-nn.png" width="60%" />
 </p>
 
+## Neural Network Backpropagation Explained
 
-Understanding the intricacies of backpropagation in neural networks is crucial for grasping how these models learn from data. This guide breaks down the key components and processes involved.
+Understanding the intricacies of backpropagation in neural networks is crucial for understanding how these models learn from data. This guide provides a detailed breakdown of the key components and processes involved.
 
-## Network Inputs and Connections
+### Network Inputs and Connections
 
 ### Inputs
 
-- **`i_1` and `i_2`**: The initial data points fed into the network, representing features such as pixels in an image or attributes of a dataset.
+- **`i_1` and `i_2`**: Initial data points fed into the network, representing features such as pixels in an image or attributes of a dataset.
 
 ### Hidden Layer Neurons
 
-- **`h_1` and `h_2`**: Intermediate neurons that capture complex patterns by combining inputs through weighted connections.
-  - `h_1` is modulated by weights `w_1` and `w_2`, connecting it to `i_1` and `i_2`.
-  - `h_2` is similarly connected to `i_1` and `i_2` through weights `w_3` and `w_4`.
+- **`h_1` and `h_2`**: Neurons that capture complex patterns by combining inputs through weighted connections.
+  - `h_1` connects to `i_1` and `i_2` through weights `w_1` and `w_2`.
+  - `h_2` connects to `i_1` and `i_2` through weights `w_3` and `w_4`.
 
 ## Processing and Activation Functions
 
 ### Activation Functions for Hidden Layer
 
-- **`a_h_1` and `a_h_2`**: Apply a non-linear activation function to the output of `h_1` and `h_2` to introduce non-linearity, enabling the network to model complex relationships.
+- **`a_h_1` and `a_h_2`**: Non-linear activation functions applied to the output of `h_1` and `h_2`, enabling the network to model complex relationships.
 
 ### Activation Functions for Output Layer
 
-- **`a_o_1` and `a_o_2`**: The final predictions of the network are shaped by applying an activation function to the output neurons `o_1` and `o_2`.
+- **`a_o_1` and `a_o_2`**: Activation functions applied to the output neurons `o_1` and `o_2`, shaping the final predictions of the network.
 
 ## Weighted Connections to Output Layer
 
-- Outputs from `h_1` and `h_2` are connected to `o_1` and `o_2` via weights `w_5`, `w_6`, `w_7`, and `w_8`.
+- Outputs from `h_1` and `h_2` connect to `o_1` and `o_2` via weights `w_5`, `w_6`, `w_7`, and `w_8`.
 
 ## Error Calculation and Targets
 
 ### Mean Squared Error Loss Function
 
-- **`E_total = E_1 + E_2`**: The network's performance is evaluated by calculating the mean squared error between its predictions and the actual target values `t_1` and `t_2`.
+- **`E_total = E_1 + E_2`**: Performance evaluated by calculating the mean squared error between predictions and actual target values `t_1` and `t_2`.
 
 ## Backpropagation and Learning
 
-- The process of adjusting weights (`w_1` through `w_8`) based on the calculated error, using the derivative of the error with respect to each weight and the chain rule for derivatives.
+Adjusting weights (`w_1` through `w_8`) based on the calculated error, using the derivative of the error with respect to each weight and the chain rule for derivatives.
 
-## Step-by-Step Backpropagation Process:
-
+## Step-by-Step Backpropagation Process
 
 ### Forward Pass
+
 1. **Input to Hidden Layer Calculations**:
-   - Calculate hidden layer inputs: 
-     - `h_1 = w_1 * i_1 + w_2 * i_2`
-     - `h_2 = w_3 * i_1 + w_4 * i_2`
-   - Apply the activation function (σ, a sigmoid function in this case) to get the hidden layer activations:
+   - `h_1 = w_1 * i_1 + w_2 * i_2`
+   - `h_2 = w_3 * i_1 + w_4 * i_2`
+   - Activation functions applied to hidden layer outputs:
      - `a_h_1 = σ(h_1) = 1 / (1 + exp(-h_1))`
      - `a_h_2 = σ(h_2)`
 
-2. **Hidden Layer to Output Layer Calculations**:
-   - Calculate output layer inputs:
-     - `o_1 = w_5 * a_h_1 + w_6 * a_h_2`
-     - `o_2 = w_7 * a_h_1 + w_8 * a_h_2`
-   - Apply the activation function to get the output activations:
+2. **Hidden to Output Layer Calculations**:
+   - `o_1 = w_5 * a_h_1 + w_6 * a_h_2`
+   - `o_2 = w_7 * a_h_1 + w_8 * a_h_2`
+   - Activation functions applied to output layer outputs:
      - `a_o_1 = σ(o_1)`
      - `a_o_2 = σ(o_2)`
 
 3. **Error Calculation**:
-   - Compute the total error for both output neurons:
+   - Total error calculation:
      - `E_total = E_1 + E_2`
      - `E_1 = 1/2 * (t_1 - a_o_1)^2`
      - `E_2 = 1/2 * (t_2 - a_o_2)^2`
 
 ### Backward Pass (Backpropagation)
-The goal is to compute how much each weight contributes to the error and adjust accordingly.
 
-1. **Gradient Calculation for Output Layer Weights (w_5, w_6, w_7, w_8)**:
-   - The derivative of the error with respect to each weight is calculated using the chain rule. For example, for `w_5`:
-     - `∂E_total/∂w_5 = (a_o_1 - t_1) * a_o_1 * (1 - a_o_1) * a_h_1`
-   - Similarly, calculate gradients for `w_6, w_7`, and `w_8`.
+Goal: Compute how much each weight contributes to the error and adjust accordingly.
 
-2. **Gradient Calculation for Input Layer Weights (w_1, w_2, w_3, w_4)**:
-   - First, compute the gradient of the error with respect to the activations of the hidden layer. Then, apply the chain rule to find the gradient with respect to each weight. For `w_1`:
-     - `∂E_total/∂w_1 = ((a_o_1 - t_1) * a_o_1 * (1 - a_o_1) * w_5 + (a_o_2 - t_2) * a_o_2 * (1 - a_o_2) * w_7) * a_h_1 * (1 - a_h_1) * i_1`
-   - Repeat this process for `w_2, w_3`, and `w_4` using their respective paths through the network.
+1. **Gradient Calculation for Output Layer Weights (`w_5`, `w_6`, `w_7`, `w_8`)**:
+   - `∂E_total/∂w_5 = (a_o_1 - t_1) * a_o_1 * (1 - a_o_1) * a_h_1`
+   - Similar calculations for `w_6`, `w_7`, and `w_8`.
+
+2. **Gradient Calculation for Input Layer Weights (`w_1`, `w_2`, `w_3`, `w_4`)**:
+   - `∂E_total/∂w_1 = ((a_o_1 - t_1) * a_o_1 * (1 - a_o_1) * w_5 + (a_o_2 - t_2) * a_o_2 * (1 - a_o_2) * w_7) * a_h_1 * (1 - a_h_1) * i_1`
+   - Similar calculations for `w_2`, `w_3`, and `w_4` using their respective paths through the network.
 
 ### Important Notes
-- **Activation Function Derivative**: The derivative of the sigmoid function, `σ(x)`, is `σ(x) * (1 - σ(x))`, crucial for calculating gradients.
-- **Chain Rule Application**: The gradients of the weights are computed by applying the chain rule of derivatives, taking into account the path of each weight's influence on the total error.
+
+- **Activation Function Derivative**: The derivative of the sigmoid function `σ(x)` is crucial for calculating gradients and is given by `σ(x) * (1 - σ(x))`.
+- **Chain Rule Application**: The gradients of the weights are computed by applying the chain rule of derivatives. This takes into account the path of each weight's influence on the total error, allowing for the precise adjustment of weights to minimize error in the network's predictions.
+
 
 
 ## Graph Results (Error vs Epochs)
