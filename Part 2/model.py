@@ -28,7 +28,7 @@ class MaxPoolingBlock(nn.Module):
 # Defining the CNN Model leveraging the ConvBlock and MaxPoolingBlock (less than 20k parameters)
 
 class Net(nn.Module):
-    def __init__(self, in_channels, out_channels, n_channels=32):
+    def __init__(self, in_channels=1, n_channels=32):
         super(Net, self).__init__()
         # Conv Block 1
         # r_in: 1, n_in:28, j_in:1, s:1, p:1, r_out:3, n_out:28, j_out:1
