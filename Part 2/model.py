@@ -20,7 +20,7 @@ class MaxPoolingBlock(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(MaxPoolingBlock, self).__init__()
         self.pool = nn.MaxPool2d(2,2)
-        self.conv1d = nn.Conv1d(in_channels, out_channels, kernel_size=1, padding=1)
+        self.conv1d = nn.Conv1d(in_channels, out_channels, kernel_size=1)
         
     def forward(self, x):
         return self.conv1d(self.pool(x))
