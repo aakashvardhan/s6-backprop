@@ -10,7 +10,7 @@ from torchvision import datasets, transforms
 
 class ConvBlock(nn.Module):
     def __init__(self, in_channels, out_channels, dropout=0, **kwargs):
-        super(ConvBlock, self).__init__()
+        super().__init__()
         self.conv = nn.Conv2d(in_channels, out_channels, **kwargs)
         self.batchnorm = nn.BatchNorm2d(out_channels)
         self.dropout = nn.Dropout(dropout)
@@ -20,7 +20,7 @@ class ConvBlock(nn.Module):
     
 class MaxPoolingBlock(nn.Module):
     def __init__(self, in_channels, out_channels):
-        super(MaxPoolingBlock, self).__init__()
+        super().__init__()
         self.pool = nn.MaxPool2d(2,2)
         self.conv1d = nn.Conv2d(in_channels, out_channels, kernel_size=1)
         
@@ -31,7 +31,7 @@ class MaxPoolingBlock(nn.Module):
 
 class Net(nn.Module):
     def __init__(self, in_channels=1, n_channels=32):
-        super(Net, self).__init__()
+        super().__init__()
         # Conv Block 1
         # r_in: 1, n_in:28, j_in:1, s:1, p:1, r_out:3, n_out:28, j_out:1
         self.conv1 = ConvBlock(in_channels, n_channels // 8, dropout=0, kernel_size=3, padding=1)
@@ -59,7 +59,7 @@ class Net(nn.Module):
         self.dropout = nn.Dropout(0.1)
         
         # r_in:13, n_in:16, j_in:2, s:1, p:1, r_out:13, n_out:18, j_out:2
-        self.conv6 = nn.Conv2d(n_channels * 2, 10, kernel_size=1, padding=1)
+        self.conv6 = nn.Conv2d(n_channels * 2, 10, kernel_size=1)
         
         self.gap = nn.AvgPool2d(kernel_size=16)
         
@@ -100,8 +100,6 @@ def test_model_sanity():
     # Create model
     model = Net().to(device)
     
-    # Using NLLLoss as the loss function'
-    criterion = F.nll_loss
     
     # Using SGD as the optimizer
     optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
@@ -113,7 +111,7 @@ def test_model_sanity():
     for epoch in range(1, 4):
         # Print the current epoch number
         print(f'Epoch {epoch}')
-        train(model, device, train_loader, optimizer, criterion)
+        train(model, device, train_loader, optimizer, epoch)
         
     # Perform sanity check: the loss should be decreasing after training
     assert train_losses[0] > train_losses[-1], "Sanity check failed: Model is not capable of overfitting to a small subset of the data."
