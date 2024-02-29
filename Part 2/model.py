@@ -34,13 +34,13 @@ class Net(nn.Module):
         super().__init__()
         # Conv Block 1
         # r_in: 1, n_in:28, j_in:1, s:1, p:1, r_out:3, n_out:28, j_out:1
-        self.conv1 = ConvBlock(in_channels, n_channels // 8, dropout=0, kernel_size=3, padding=1)
+        self.conv1 = ConvBlock(in_channels, n_channels // 8, dropout=0, kernel_size=3)
         # r_in:3, n_in:28, j_in:1, s:1, p:1, r_out:5, n_out:28, j_out:1
-        self.conv2 = ConvBlock(n_channels // 8, n_channels // 4, dropout=0, kernel_size=3, padding=1)
+        self.conv2 = ConvBlock(n_channels // 8, n_channels // 4, dropout=0, kernel_size=3)
         # r_in:5, n_in:28, j_in:1, s:1, p:1, r_out:7, n_out:28, j_out:1
-        self.conv3 = ConvBlock(n_channels // 4, n_channels // 2, dropout=0, kernel_size=3, padding=1)
+        self.conv3 = ConvBlock(n_channels // 4, n_channels // 2, dropout=0, kernel_size=3)
         # r_in:7, n_in:28, j_in:1, s:1, p:1, r_out:9, n_out:28, j_out:1
-        self.conv4 = ConvBlock(n_channels // 2, n_channels, dropout=0.1, kernel_size=3, padding=1)
+        self.conv4 = ConvBlock(n_channels // 2, n_channels, dropout=0.1, kernel_size=3)
         
         # Transition Block 1
         '''
@@ -55,7 +55,7 @@ class Net(nn.Module):
         # Output Block
         
         # r_in:9, n_in:16, j_in:2, s:1, p:1, r_out:13, n_out:16, j_out:2
-        self.conv5 = nn.Conv2d(n_channels // 2, n_channels * 2, kernel_size=3, padding=1)
+        self.conv5 = nn.Conv2d(n_channels // 2, n_channels * 2, kernel_size=3)
         self.dropout = nn.Dropout(0.1)
         
         
