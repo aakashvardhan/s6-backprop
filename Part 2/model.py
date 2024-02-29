@@ -78,7 +78,6 @@ class Net(nn.Module):
     
     
 def model_summary(model, input_size=(1, 28, 28)):
-    test_model_sanity()
     from torchsummary import summary
     summary(model, input_size=input_size)
         
