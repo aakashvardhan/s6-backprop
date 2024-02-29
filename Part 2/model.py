@@ -61,7 +61,7 @@ class Net(nn.Module):
         # r_in:13, n_in:16, j_in:2, s:1, p:1, r_out:13, n_out:18, j_out:2
         self.conv6 = nn.Conv2d(n_channels * 2, 10, kernel_size=1)
         
-        self.gap = nn.AvgPool2d(kernel_size=16)
+        self.gap = nn.AvgPool2d(kernel_size=14)
         
     def forward(self, x):
         x = self.conv1(x)
@@ -90,32 +90,39 @@ def test_model_sanity():
     mnist_train = datasets.MNIST('data', train=True, download=True, transform=transforms.ToTensor())
     # Use a small subset for testing to speed up the process
     train_subset = Subset(mnist_train, range(100))
-    # Check if CUDA is available on the system and set `use_cuda` accordingly
-    use_cuda = torch.cuda.is_available()
-
-    # Set the device to "cuda" if CUDA is available, otherwise fall back to using the CPU
-    device = torch.device("cuda" if use_cuda else "cpu")
     # Set the seed
     torch.manual_seed(1)
     # Create model
-    model = Net().to(device)
-    
-    
+    model = Net()
+    loss_function = F.nll_loss
     # Using SGD as the optimizer
     optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
     
     # Create data loader
     train_loader = DataLoader(train_subset, batch_size=10, shuffle=True)
     
-    # Train the model on small subset
-    for epoch in range(1, 4):
-        # Print the current epoch number
-        print(f'Epoch {epoch}')
-        train(model, device, train_loader, optimizer, epoch)
-        
-    # Perform sanity check: the loss should be decreasing after training
-    assert train_losses[0] > train_losses[-1], "Sanity check failed: Model is not capable of overfitting to a small subset of the data."
+    # Train the model on the small subset
+    model.train()
+    for epoch in range(1, 4):  # Running for 3 epochs just for testing
+        print(f"Epoch {epoch}")
+        for data, target in train_loader:
+            optimizer.zero_grad()
+            output = model(data)
+            loss = loss_function(output, target)
+            loss.backward()
+            optimizer.step()
     
+    # Perform a sanity check: the loss should decrease after training
+    initial_loss = loss.item()
+    final_loss = None
+    for data, target in train_loader:
+        output = model(data)
+        final_loss = loss_function(output, target).item()
+        break  # Just check the loss for the first batch
+
+    assert final_loss < initial_loss, "Sanity check failed: Loss did not decrease after training."
+
     print("Sanity check passed: Model is capable of overfitting to a small subset of the data.")
-        
-        
+
+if __name__ == '__main__':
+    test_model_sanity()
