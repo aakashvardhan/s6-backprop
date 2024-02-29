@@ -14,83 +14,69 @@ test_acc = []
 # Dictionary to keep track of incorrect predictions for analysis
 test_incorrect_pred = {'images': [], 'ground_truths': [], 'predicted_vals': []}
 
-# Helper function to count the number of correct predictions
+# Function to calculate the number of correct predictions
 def GetCorrectPredCount(pPrediction, pLabels):
-    # Compares predicted labels with the true labels and sums up the number of correct predictions
+    # Compares the predicted labels with the actual labels
     return pPrediction.argmax(dim=1).eq(pLabels).sum().item()
 
-# Training function
-def train(model, device, train_loader, optimizer, epoch):
-    # Set model to training mode
-    model.train()
-    pbar = tqdm(train_loader)
+# Function to train the model
+def train(model, device, train_loader, optimizer, criterion):
+    model.train()  # Sets the model to training mode
+    pbar = tqdm(train_loader)  # Initializes a progress bar
 
     train_loss = 0
     correct = 0
     processed = 0
 
-    # Iterate over the training data
+    # Loop through each batch from the training data
     for batch_idx, (data, target) in enumerate(pbar):
-        # Move data to the appropriate device (CPU or GPU)
-        data, target = data.to(device), target.to(device)
-        # Zero the gradients carried over from previous steps
-        optimizer.zero_grad()
+        data, target = data.to(device), target.to(device)  # Move data to the specified device (CPU/GPU)
+        optimizer.zero_grad()  # Clears the gradients of all optimized tensors
 
-        # Forward pass - compute the model output
+        # Forward pass: compute predicted outputs by passing inputs to the model
         pred = model(data)
 
-        # Compute loss
-        loss = F.nll_loss(pred, target)
+        # Calculate the loss
+        loss = criterion(pred, target)
         train_loss += loss.item()
 
-        # Backward pass - compute the gradient
+        # Backward pass: compute gradient of the loss with respect to model parameters
         loss.backward()
-        # Update the parameters
-        optimizer.step()
-        
-        # Accumulate the correct predictions
-        correct += GetCorrectPredCount(pred, target)
-        # Count the total number of processed samples
-        processed += len(data)
+        optimizer.step()  # Performs a single optimization step
 
-        # Update the progress bar with the current loss and accuracy
-        pbar.set_description(desc= f'Train: Loss={loss.item():0.4f} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
-    
-    # Record the accuracy and loss for the epoch
+        correct += GetCorrectPredCount(pred, target)  # Update total number of correct predictions
+        processed += len(data)  # Update total number of processed samples
+
+        # Update progress bar description with current loss and accuracy
+        pbar.set_description(desc=f'Train: Loss={loss.item():0.4f} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
+
+    # Append average accuracy and loss for the epoch to the lists
     train_acc.append(100*correct/processed)
     train_losses.append(train_loss/len(train_loader))
 
-# Testing function
-def test(model, device, test_loader):
-    # Set model to evaluation mode
-    model.eval()
-
+# Function to evaluate the model on the test dataset
+def test(model, device, test_loader, criterion):
+    model.eval()  # Sets the model to evaluation mode
     test_loss = 0
     correct = 0
 
-    # Disable gradient calculation for efficiency and to prevent changes during testing
-    with torch.no_grad():
+    with torch.no_grad():  # Disables gradient calculation to save memory and computations
         for batch_idx, (data, target) in enumerate(test_loader):
-            # Move data to the appropriate device
             data, target = data.to(device), target.to(device)
 
-            # Forward pass - compute the model output
             output = model(data)
-            # Accumulate the batch loss
-            test_loss += F.nll_loss(output, target).item()
+            test_loss += criterion(output, target).item()  # Sum up batch loss
 
-            # Accumulate the number of correct predictions
-            correct += GetCorrectPredCount(output, target)
+            correct += GetCorrectPredCount(output, target)  # Update total number of correct predictions
 
-    # Calculate the average loss and total accuracy
+    # Calculate average loss and accuracy
     test_loss /= len(test_loader.dataset)
     test_acc.append(100. * correct / len(test_loader.dataset))
     test_losses.append(test_loss)
 
-    # Print the test set results
-    print('Test set: Average loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
-        test_loss, correct, len(test_loader.dataset),
-        100. * correct / len(test_loader.dataset)))
+    # Print test set results
+    print(f'Test set: Average loss: {test_loss:.4f}, Accuracy: {correct}/{len(test_loader.dataset)} ({100. * correct / len(test_loader.dataset):.2f}%)')
+    
     
 
 # Function to plot the training and testing graphs for loss and accuracy
