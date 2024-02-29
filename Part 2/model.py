@@ -53,9 +53,9 @@ class Net(nn.Module):
         self.mp1 = MaxPoolingBlock(n_channels, n_channels // 2)
         
         # Conv Block 2
-        self.conv5 = ConvBlock(n_channels // 2, n_channels // 2, dropout=0.1, kernel_size=3)
-        self.conv6 = ConvBlock(n_channels // 2, n_channels, dropout=0.1, kernel_size=3)
-        self.conv7 = ConvBlock(n_channels, n_channels * 2, dropout=0.1, kernel_size=3)
+        self.conv5 = ConvBlock(n_channels // 2, n_channels // 4, dropout=0.1, kernel_size=3)
+        self.conv6 = ConvBlock(n_channels // 4, n_channels // 4, dropout=0.1, kernel_size=3)
+        self.conv7 = ConvBlock(n_channels // 4, n_channels * 2, dropout=0.1, kernel_size=3)
         
         # Output Block
 
