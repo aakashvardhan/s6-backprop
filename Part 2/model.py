@@ -70,7 +70,6 @@ class Net(nn.Module):
         x = self.mp1(x)
         x = F.relu(self.conv5(x))
         x = self.dropout(x)
-        x = self.conv6(x)
         x = self.gap(x)
         x = x.view(-1, 64)
         x = self.fc1(x)
