@@ -113,7 +113,7 @@ def test_model_sanity():
     for epoch in range(1, 2):
         # Print the current epoch number
         print(f'Epoch {epoch}')
-        train(model, device, train_loader, optimizer, criterion, epoch)
+        train(model, device, train_loader, optimizer, criterion)
         
     # Perform sanity check: the loss should be decreasing after the first epoch
     assert train_losses[0] > train_losses[-1], "Loss is not decreasing"
