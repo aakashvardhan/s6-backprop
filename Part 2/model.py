@@ -72,7 +72,7 @@ class Net(nn.Module):
         x = self.dropout(x)
         x = self.conv6(x)
         x = self.gap(x)
-        x = x.view(-1, 10)
+        x = x.view(-1, 64)
         x = self.fc1(x)
         return F.log_softmax(x, dim=1)
     
