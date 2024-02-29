@@ -59,7 +59,7 @@ class Net(nn.Module):
         
         # Output Block
 
-        self.gap = nn.AvgPool2d(kernel_size=8)
+        self.gap = nn.AvgPool2d(kernel_size=4)
         self.fc1 = nn.Linear(n_channels * 2, 10)
         
     def forward(self, x):
