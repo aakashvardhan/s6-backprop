@@ -110,13 +110,13 @@ def test_model_sanity():
     train_loader = DataLoader(train_subset, batch_size=10, shuffle=True)
     
     # Train the model on small subset
-    for epoch in range(1, 2):
+    for epoch in range(1, 4):
         # Print the current epoch number
         print(f'Epoch {epoch}')
         train(model, device, train_loader, optimizer, criterion)
         
-    # Perform sanity check: the loss should be decreasing after the first epoch
-    assert train_losses[0] > train_losses[-1], "Loss is not decreasing"
+    # Perform sanity check: the loss should be decreasing after training
+    assert train_losses[0] > train_losses[-1], "Sanity check failed: Model is not capable of overfitting to a small subset of the data."
     
     print("Sanity check passed: Model is capable of overfitting to a small subset of the data.")
         
