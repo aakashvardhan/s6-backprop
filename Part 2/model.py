@@ -2,7 +2,9 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+import torch.optim as optim
+from torch.utils.data import DataLoader, Subset
+from torchvision import datasets, transforms
 
 # Defining the CNN Model
 
@@ -79,6 +81,34 @@ def model_summary(model, input_size=(1, 28, 28)):
     from torchsummary import summary
     summary(model, input_size=input_size)
         
+# Test Model Sanity
+def test_model_sanity():
+    from tqdm import tqdm
+    from utils import train, train_losses
+    # Load MNIST dataset
+    mnist_train = datasets.MNIST('data', train=True, download=True, transform=transforms.ToTensor())
+    # Use a small subset for testing to speed up the process
+    train_subset = Subset(mnist_train, range(100))
+    
+    # Set the seed
+    torch.manual_seed(1)
+    # Create model
+    model = Net()
+    
+    # Using NLLLoss as the loss function'
+    criterion = F.nll_loss
+    
+    # Using SGD as the optimizer
+    optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
+    
+    # Create data loader
+    train_loader = DataLoader(train_subset, batch_size=10, shuffle=True)
+    
+    # Train the model on small subset
+    for epoch in range(1, 2):
+        train(model, train_loader, criterion, optimizer, epoch)
         
+    # Perform sanity check: the loss should be decreasing after the first epoch
+    assert train_losses[0] > train_losses[-1], "Loss is not decreasing"
         
         
