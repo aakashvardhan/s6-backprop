@@ -16,7 +16,7 @@ class ConvBlock(nn.Module):
         self.dropout = nn.Dropout(dropout)
         
     def forward(self, x):
-        return self.dropout(F.relu(self.batchnorm(self.conv(x))))
+        return self.dropout(self.batchnorm(F.relu(self.conv(x))))
     
 class MaxPoolingBlock(nn.Module):
     def __init__(self, in_channels, out_channels):
