@@ -102,10 +102,19 @@ def test_model_sanity():
     train_loader = DataLoader(train_subset, batch_size=10, shuffle=True)
     
     # Train the model on the small subset
-    model.train()
+    # Calculate initial loss
+    model.eval()  # Set the model to evaluation mode for initial loss calculation
+    with torch.no_grad():
+        data, target = next(iter(train_loader))
+        initial_loss = loss_function(model(data), target).item()
+    
+    # Train the model on the small subset
+    model.train()  # Set the model back to train mode
     for epoch in range(1, 4):  # Running for 3 epochs just for testing
         print(f"Epoch {epoch}")
-        for data, target in train_loader:
+        pbar = tqdm(train_loader)
+
+        for batch_idx, (data, target) in enumerate(pbar):
             optimizer.zero_grad()
             output = model(data)
             loss = loss_function(output, target)
@@ -113,15 +122,12 @@ def test_model_sanity():
             optimizer.step()
     
     # Perform a sanity check: the loss should decrease after training
-    initial_loss = loss.item()
-    final_loss = None
-    for data, target in train_loader:
-        output = model(data)
-        final_loss = loss_function(output, target).item()
-        break  # Just check the loss for the first batch
+    model.eval()  # Set the model to evaluation mode for final loss calculation
+    with torch.no_grad():
+        final_loss = loss_function(model(data), target).item()
 
     assert final_loss < initial_loss, "Sanity check failed: Loss did not decrease after training."
-
+    
     print("Sanity check passed: Model is capable of overfitting to a small subset of the data.")
 
 if __name__ == '__main__':
