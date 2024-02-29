@@ -90,11 +90,15 @@ def test_model_sanity():
     mnist_train = datasets.MNIST('data', train=True, download=True, transform=transforms.ToTensor())
     # Use a small subset for testing to speed up the process
     train_subset = Subset(mnist_train, range(100))
-    
+    # Check if CUDA is available on the system and set `use_cuda` accordingly
+    use_cuda = torch.cuda.is_available()
+
+    # Set the device to "cuda" if CUDA is available, otherwise fall back to using the CPU
+    device = torch.device("cuda" if use_cuda else "cpu")
     # Set the seed
     torch.manual_seed(1)
     # Create model
-    model = Net()
+    model = Net().to(device)
     
     # Using NLLLoss as the loss function'
     criterion = F.nll_loss
@@ -107,7 +111,9 @@ def test_model_sanity():
     
     # Train the model on small subset
     for epoch in range(1, 2):
-        train(model, train_loader, criterion, optimizer, epoch)
+        # Print the current epoch number
+        print(f'Epoch {epoch}')
+        train(model, device, train_loader, optimizer, criterion, epoch)
         
     # Perform sanity check: the loss should be decreasing after the first epoch
     assert train_losses[0] > train_losses[-1], "Loss is not decreasing"
