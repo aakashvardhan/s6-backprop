@@ -59,7 +59,7 @@ class Net(nn.Module):
         self.dropout = nn.Dropout(0.1)
         
         
-        self.gap = nn.AvgPool2d(kernel_size=14)
+        self.gap = nn.AvgPool2d(kernel_size=8)
         self.fc1 = nn.Linear(n_channels * 2, 10)
         
     def forward(self, x):
