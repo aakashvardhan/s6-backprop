@@ -110,5 +110,7 @@ def test_model_sanity():
         
     # Perform sanity check: the loss should be decreasing after the first epoch
     assert train_losses[0] > train_losses[-1], "Loss is not decreasing"
+    
+    print("Sanity check passed: Model is capable of overfitting to a small subset of the data.")
         
         
