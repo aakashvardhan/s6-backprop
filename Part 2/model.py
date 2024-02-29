@@ -55,12 +55,12 @@ class Net(nn.Module):
         # Conv Block 2
         self.conv5 = ConvBlock(n_channels // 2, n_channels // 2, dropout=0, kernel_size=3)
         self.conv6 = ConvBlock(n_channels // 2, n_channels, dropout=0.1, kernel_size=3)
-        self.conv7 = ConvBlock(n_channels, n_channels * 2, dropout=0.1, kernel_size=3)
+        self.conv7 = ConvBlock(n_channels, n_channels, dropout=0.1, kernel_size=3)
         
         # Output Block
 
         self.gap = nn.AvgPool2d(kernel_size=4)
-        self.fc1 = nn.Linear(n_channels * 2, 10)
+        self.fc1 = nn.Linear(n_channels, 10)
         
     def forward(self, x):
         x = self.conv1(x)
@@ -72,7 +72,7 @@ class Net(nn.Module):
         x = self.conv6(x)
         x = self.conv7(x)
         x = self.gap(x)
-        x = x.view(-1, 64)
+        x = x.view(-1, 32)
         x = self.fc1(x)
         return F.log_softmax(x, dim=1)
     
