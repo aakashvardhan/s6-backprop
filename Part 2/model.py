@@ -46,19 +46,19 @@ class Net(nn.Module):
         '''
         MaxPooling(2,2):
         r_in:9, n_in:28, j_in:1, s:2, p:0, r_out:9, n_out:15, j_out:2
-        
         with 1x1 Convolution:
         r_in:9, n_in:14, j_in:2, s:1, p:1, r_out:9, n_out:16, j_out:2
         '''
+        
         self.mp1 = MaxPoolingBlock(n_channels, n_channels // 2)
         
+        # Conv Block 2
+        self.conv5 = ConvBlock(n_channels // 2, n_channels // 2, dropout=0.1, kernel_size=3)
+        self.conv6 = ConvBlock(n_channels // 2, n_channels, dropout=0.1, kernel_size=3)
+        self.conv7 = ConvBlock(n_channels, n_channels * 2, dropout=0.1, kernel_size=3)
+        
         # Output Block
-        
-        # r_in:9, n_in:16, j_in:2, s:1, p:1, r_out:13, n_out:16, j_out:2
-        self.conv5 = nn.Conv2d(n_channels // 2, n_channels * 2, kernel_size=3)
-        self.dropout = nn.Dropout(0.1)
-        
-        
+
         self.gap = nn.AvgPool2d(kernel_size=8)
         self.fc1 = nn.Linear(n_channels * 2, 10)
         
@@ -68,8 +68,9 @@ class Net(nn.Module):
         x = self.conv3(x)
         x = self.conv4(x)
         x = self.mp1(x)
-        x = F.relu(self.conv5(x))
-        x = self.dropout(x)
+        x = self.conv5(x)
+        x = self.conv6(x)
+        x = self.conv7(x)
         x = self.gap(x)
         x = x.view(-1, 64)
         x = self.fc1(x)
