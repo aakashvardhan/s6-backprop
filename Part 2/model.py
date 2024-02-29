@@ -34,11 +34,11 @@ class Net(nn.Module):
         super().__init__()
         # Conv Block 1
         # r_in: 1, n_in:28, j_in:1, s:1, p:1, r_out:3, n_out:28, j_out:1
-        self.conv1 = ConvBlock(in_channels, n_channels // 8, dropout=0, kernel_size=3)
+        self.conv1 = ConvBlock(in_channels, n_channels // 2, dropout=0, kernel_size=3)
         # r_in:3, n_in:28, j_in:1, s:1, p:1, r_out:5, n_out:28, j_out:1
-        self.conv2 = ConvBlock(n_channels // 8, n_channels // 4, dropout=0, kernel_size=3)
+        self.conv2 = ConvBlock(n_channels // 2, n_channels // 2, dropout=0, kernel_size=3)
         # r_in:5, n_in:28, j_in:1, s:1, p:1, r_out:7, n_out:28, j_out:1
-        self.conv3 = ConvBlock(n_channels // 4, n_channels // 2, dropout=0, kernel_size=3)
+        self.conv3 = ConvBlock(n_channels // 2, n_channels // 2, dropout=0, kernel_size=3)
         # r_in:7, n_in:28, j_in:1, s:1, p:1, r_out:9, n_out:28, j_out:1
         self.conv4 = ConvBlock(n_channels // 2, n_channels, dropout=0, kernel_size=3)
         
