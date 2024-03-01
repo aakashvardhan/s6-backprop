@@ -67,5 +67,63 @@ model = Net(in_channels=1, n_channels=32)
 
 ## Data Loading and Transformation
 
+Explained in ![s5-pytorch-tutorial](https://github.com/aakashvardhan/s5-pytorch-tutorial#prepare-the-dataset)
 
+## Train the Model
+
+Explained in ![s5-pytorch-tutorial](https://github.com/aakashvardhan/s5-pytorch-tutorial?tab=readme-ov-file#train-the-model)
+
+## Evaluation
+
+### Model Summary
+
+```
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1           [-1, 16, 26, 26]             160
+       BatchNorm2d-2           [-1, 16, 26, 26]              32
+           Dropout-3           [-1, 16, 26, 26]               0
+         ConvBlock-4           [-1, 16, 26, 26]               0
+            Conv2d-5           [-1, 16, 24, 24]           2,320
+       BatchNorm2d-6           [-1, 16, 24, 24]              32
+           Dropout-7           [-1, 16, 24, 24]               0
+         ConvBlock-8           [-1, 16, 24, 24]               0
+            Conv2d-9           [-1, 16, 22, 22]           2,320
+      BatchNorm2d-10           [-1, 16, 22, 22]              32
+          Dropout-11           [-1, 16, 22, 22]               0
+        ConvBlock-12           [-1, 16, 22, 22]               0
+           Conv2d-13           [-1, 32, 20, 20]           4,640
+      BatchNorm2d-14           [-1, 32, 20, 20]              64
+          Dropout-15           [-1, 32, 20, 20]               0
+        ConvBlock-16           [-1, 32, 20, 20]               0
+        MaxPool2d-17           [-1, 32, 10, 10]               0
+           Conv2d-18           [-1, 16, 10, 10]             528
+  MaxPoolingBlock-19           [-1, 16, 10, 10]               0
+           Conv2d-20             [-1, 16, 8, 8]           2,320
+      BatchNorm2d-21             [-1, 16, 8, 8]              32
+          Dropout-22             [-1, 16, 8, 8]               0
+        ConvBlock-23             [-1, 16, 8, 8]               0
+           Conv2d-24             [-1, 16, 6, 6]           2,320
+      BatchNorm2d-25             [-1, 16, 6, 6]              32
+          Dropout-26             [-1, 16, 6, 6]               0
+        ConvBlock-27             [-1, 16, 6, 6]               0
+           Conv2d-28             [-1, 32, 4, 4]           4,640
+      BatchNorm2d-29             [-1, 32, 4, 4]              64
+          Dropout-30             [-1, 32, 4, 4]               0
+        ConvBlock-31             [-1, 32, 4, 4]               0
+        AvgPool2d-32             [-1, 32, 1, 1]               0
+           Linear-33                   [-1, 10]             330
+================================================================
+Total params: 19,866
+Trainable params: 19,866
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.00
+Forward/backward pass size (MB): 1.35
+Params size (MB): 0.08
+Estimated Total Size (MB): 1.43
+----------------------------------------------------------------
+
+```
 
