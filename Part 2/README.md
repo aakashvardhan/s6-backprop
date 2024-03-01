@@ -127,3 +127,62 @@ Estimated Total Size (MB): 1.43
 
 ```
 
+The model consists of 19,866 parameters, well within the specified constraint of less than 20k parameters. The model's architecture is designed to efficiently learn from the MNIST dataset, leveraging convolutional layers, batch normalization, dropout, and global average pooling.
+
+### Loss and Accuracy Plots
+
+```
+Adjusting learning rate of group 0 to 5.0000e-02.
+Epoch 1
+Train: Loss=0.0672 Batch_id=117 Accuracy=88.30: 100%|██████████| 118/118 [00:19<00:00,  6.17it/s]
+Test set: Average loss: 0.0001, Accuracy: 9838/10000 (98.38%)
+Adjusting learning rate of group 0 to 5.0000e-02.
+Epoch 2
+Train: Loss=0.0658 Batch_id=117 Accuracy=97.87: 100%|██████████| 118/118 [00:20<00:00,  5.64it/s]
+Test set: Average loss: 0.0001, Accuracy: 9895/10000 (98.95%)
+Adjusting learning rate of group 0 to 5.0000e-02.
+Epoch 3
+Train: Loss=0.0622 Batch_id=117 Accuracy=98.19: 100%|██████████| 118/118 [00:20<00:00,  5.75it/s]
+Test set: Average loss: 0.0001, Accuracy: 9910/10000 (99.10%)
+Adjusting learning rate of group 0 to 5.0000e-02.
+Epoch 4
+Train: Loss=0.0126 Batch_id=117 Accuracy=98.41: 100%|██████████| 118/118 [00:21<00:00,  5.45it/s]
+Test set: Average loss: 0.0001, Accuracy: 9905/10000 (99.05%)
+Adjusting learning rate of group 0 to 5.0000e-02.
+Epoch 5
+Train: Loss=0.0227 Batch_id=117 Accuracy=98.64: 100%|██████████| 118/118 [00:20<00:00,  5.88it/s]
+Test set: Average loss: 0.0001, Accuracy: 9917/10000 (99.17%)
+Adjusting learning rate of group 0 to 5.0000e-02.
+
+.......................
+.......................
+.......................
+.......................
+
+Epoch 15
+Train: Loss=0.0209 Batch_id=117 Accuracy=99.29: 100%|██████████| 118/118 [00:21<00:00,  5.54it/s]
+Test set: Average loss: 0.0000, Accuracy: 9952/10000 (99.52%)
+Adjusting learning rate of group 0 to 5.0000e-03.
+Epoch 16
+Train: Loss=0.0331 Batch_id=117 Accuracy=99.29: 100%|██████████| 118/118 [00:20<00:00,  5.85it/s]
+Test set: Average loss: 0.0000, Accuracy: 9956/10000 (99.56%)
+Adjusting learning rate of group 0 to 5.0000e-03.
+Epoch 17
+Train: Loss=0.0263 Batch_id=117 Accuracy=99.29: 100%|██████████| 118/118 [00:20<00:00,  5.78it/s]
+Test set: Average loss: 0.0000, Accuracy: 9959/10000 (99.59%)
+Adjusting learning rate of group 0 to 5.0000e-03.
+Epoch 18
+Train: Loss=0.0497 Batch_id=117 Accuracy=99.29: 100%|██████████| 118/118 [00:21<00:00,  5.43it/s]
+Test set: Average loss: 0.0000, Accuracy: 9958/10000 (99.58%)
+Adjusting learning rate of group 0 to 5.0000e-03.
+Epoch 19
+Train: Loss=0.0351 Batch_id=117 Accuracy=99.31: 100%|██████████| 118/118 [00:21<00:00,  5.52it/s]
+Test set: Average loss: 0.0000, Accuracy: 9958/10000 (99.58%)
+Adjusting learning rate of group 0 to 5.0000e-03.
+
+```
+
+The model achieves a validation accuracy of 99.58% in just 19 epochs, demonstrating the effectiveness of the architecture in learning from the MNIST dataset. The loss and accuracy plots illustrate the model's learning progress, with the validation accuracy consistently improving over the training epochs.
+
+
+
