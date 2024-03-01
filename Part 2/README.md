@@ -1,6 +1,6 @@
 # Walkthrough of MNIST digit Classifier
 
-Note: This is a development of ![s5-pytorch-tutorial](https://github.com/aakashvardhan/s5-pytorch-tutorial)
+Note: This is a development of [s5-pytorch-tutorial](https://github.com/aakashvardhan/s5-pytorch-tutorial)
 
 - [Motivation](#motivation)
 - [Model Architecture](#model-architecture)
@@ -67,11 +67,11 @@ model = Net(in_channels=1, n_channels=32)
 
 ## Data Loading and Transformation
 
-Explained in ![s5-pytorch-tutorial](https://github.com/aakashvardhan/s5-pytorch-tutorial#prepare-the-dataset)
+Explained in [s5-pytorch-tutorial](https://github.com/aakashvardhan/s5-pytorch-tutorial#prepare-the-dataset)
 
 ## Train the Model
 
-Explained in ![s5-pytorch-tutorial](https://github.com/aakashvardhan/s5-pytorch-tutorial?tab=readme-ov-file#train-the-model)
+Explained in [s5-pytorch-tutorial](https://github.com/aakashvardhan/s5-pytorch-tutorial?tab=readme-ov-file#train-the-model)
 
 ## Evaluation
 
