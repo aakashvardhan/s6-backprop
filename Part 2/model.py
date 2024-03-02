@@ -84,7 +84,6 @@ def model_summary(model, input_size=(1, 28, 28)):
 # Test Model Sanity
 def test_model_sanity():
     from tqdm import tqdm
-    from utils import train, train_losses
     # Load MNIST dataset
     mnist_train = datasets.MNIST('data', train=True, download=True, transform=transforms.ToTensor())
     # Use a small subset for testing to speed up the process
@@ -111,7 +110,7 @@ def test_model_sanity():
     model.train()  # Set the model back to train mode
     for epoch in range(1, 4):  # Running for 3 epochs just for testing
         print(f"Epoch {epoch}")
-        pbar = tqdm.tqdm(train_loader)
+        pbar = tqdm(train_loader)
 
         for batch_idx, (data, target) in enumerate(pbar):
             optimizer.zero_grad()
