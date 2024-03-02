@@ -123,7 +123,7 @@ def test_model_sanity():
     # Perform a sanity check: the loss should decrease after training
     model.eval()  # Set the model to evaluation mode for final loss calculation
     with torch.no_grad():
-        final_loss = loss_function(model(data), target,def test_model_sanity():
+        final_loss = loss_function(model(data), target).item()
     from tqdm import tqdm
     from utils import train, train_losses
     # Load MNIST dataset
