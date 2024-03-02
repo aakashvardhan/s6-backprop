@@ -123,7 +123,7 @@ def test_model_sanity():
     # Perform a sanity check: the loss should decrease after training
     model.eval()  # Set the model to evaluation mode for final loss calculation
     with torch.no_grad():
-        final_loss = loss_function(model(data), target).item()
+        final_loss = loss_function(model(data), target,reduction="sum").item()
 
     assert final_loss < initial_loss, "Sanity check failed: Loss did not decrease after training."
     
