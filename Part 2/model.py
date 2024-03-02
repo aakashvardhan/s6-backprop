@@ -111,47 +111,6 @@ def test_model_sanity():
     model.train()  # Set the model back to train mode
     for epoch in range(1, 4):  # Running for 3 epochs just for testing
         print(f"Epoch {epoch}")
-        pbar = tqdm(train_loader)
-
-        for batch_idx, (data, target) in enumerate(pbar):
-            optimizer.zero_grad()
-            output = model(data)
-            loss = loss_function(output, target)
-            loss.backward()
-            optimizer.step()
-    
-    # Perform a sanity check: the loss should decrease after training
-    model.eval()  # Set the model to evaluation mode for final loss calculation
-    with torch.no_grad():
-        final_loss = loss_function(model(data), target).item()
-    from tqdm import tqdm
-    from utils import train, train_losses
-    # Load MNIST dataset
-    mnist_train = datasets.MNIST('data', train=True, download=True, transform=transforms.ToTensor())
-    # Use a small subset for testing to speed up the process
-    train_subset = Subset(mnist_train, range(100))
-    # Set the seed
-    torch.manual_seed(1)
-    # Create model
-    model = Net()
-    loss_function = F.nll_loss
-    # Using SGD as the optimizer
-    optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
-    
-    # Create data loader
-    train_loader = DataLoader(train_subset, batch_size=10, shuffle=True)
-    
-    # Train the model on the small subset
-    # Calculate initial loss
-    model.eval()  # Set the model to evaluation mode for initial loss calculation
-    with torch.no_grad():
-        data, target = next(iter(train_loader))
-        initial_loss = loss_function(model(data), target).item()
-    
-    # Train the model on the small subset
-    model.train()  # Set the model back to train mode
-    for epoch in range(1, 4):  # Running for 3 epochs just for testing
-        print(f"Epoch {epoch}")
         pbar = tqdm.tqdm(train_loader)
 
         for batch_idx, (data, target) in enumerate(pbar):
@@ -160,18 +119,13 @@ def test_model_sanity():
             loss = loss_function(output, target)
             loss.backward()
             optimizer.step()
-            pbar.set_description(f"Loss: {loss.item():.4f}")
+            pbar.set_description(f"Loss: {loss.item():.4f} Batch_id={batch_idx}")
     
     # Perform a sanity check: the loss should decrease after training
     model.eval()  # Set the model to evaluation mode for final loss calculation
     with torch.no_grad():
         data, target = next(iter(train_loader))
         final_loss = loss_function(model(data), target).item()
-
-    assert final_loss < initial_loss, "Sanity check failed: Loss did not decrease after training."
-    
-    print("Sanity check passed: Model is capable of overfitting to a small subset of the data.")
-).item()
 
     assert final_loss < initial_loss, "Sanity check failed: Loss did not decrease after training."
     
