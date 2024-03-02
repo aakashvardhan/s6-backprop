@@ -25,7 +25,7 @@ class MaxPoolingBlock(nn.Module):
         self.conv1d = nn.Conv2d(in_channels, out_channels, kernel_size=1)
         
     def forward(self, x):
-        return self.conv1d(self.pool(x))
+        return self.pool(self.conv1d(x))
     
 # Defining the CNN Model leveraging the ConvBlock and MaxPoolingBlock (less than 20k parameters)
 
