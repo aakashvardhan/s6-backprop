@@ -97,8 +97,8 @@ Explained in [s5-pytorch-tutorial](https://github.com/aakashvardhan/s5-pytorch-t
       BatchNorm2d-14           [-1, 32, 20, 20]              64
           Dropout-15           [-1, 32, 20, 20]               0
         ConvBlock-16           [-1, 32, 20, 20]               0
-        MaxPool2d-17           [-1, 32, 10, 10]               0
-           Conv2d-18           [-1, 16, 10, 10]             528
+           Conv2d-17           [-1, 16, 20, 20]             528
+        MaxPool2d-18           [-1, 16, 10, 10]               0
   MaxPoolingBlock-19           [-1, 16, 10, 10]               0
            Conv2d-20             [-1, 16, 8, 8]           2,320
       BatchNorm2d-21             [-1, 16, 8, 8]              32
@@ -120,9 +120,9 @@ Trainable params: 19,866
 Non-trainable params: 0
 ----------------------------------------------------------------
 Input size (MB): 0.00
-Forward/backward pass size (MB): 1.35
+Forward/backward pass size (MB): 1.38
 Params size (MB): 0.08
-Estimated Total Size (MB): 1.43
+Estimated Total Size (MB): 1.46
 ----------------------------------------------------------------
 
 ```
@@ -134,25 +134,24 @@ The model consists of 19,866 parameters, well within the specified constraint of
 ```
 Adjusting learning rate of group 0 to 5.0000e-02.
 Epoch 1
-Train: Loss=0.0672 Batch_id=117 Accuracy=88.30: 100%|██████████| 118/118 [00:19<00:00,  6.17it/s]
-Test set: Average loss: 0.0001, Accuracy: 9838/10000 (98.38%)
+Train: Loss=0.0675 Batch_id=117 Accuracy=89.19: 100%|██████████| 118/118 [00:32<00:00,  3.58it/s]
+Test set: Average loss: 0.0001, Accuracy: 9870/10000 (98.70%)
 Adjusting learning rate of group 0 to 5.0000e-02.
 Epoch 2
-Train: Loss=0.0658 Batch_id=117 Accuracy=97.87: 100%|██████████| 118/118 [00:20<00:00,  5.64it/s]
-Test set: Average loss: 0.0001, Accuracy: 9895/10000 (98.95%)
+Train: Loss=0.1117 Batch_id=117 Accuracy=97.78: 100%|██████████| 118/118 [00:20<00:00,  5.89it/s]
+Test set: Average loss: 0.0001, Accuracy: 9883/10000 (98.83%)
 Adjusting learning rate of group 0 to 5.0000e-02.
 Epoch 3
-Train: Loss=0.0622 Batch_id=117 Accuracy=98.19: 100%|██████████| 118/118 [00:20<00:00,  5.75it/s]
-Test set: Average loss: 0.0001, Accuracy: 9910/10000 (99.10%)
+Train: Loss=0.0661 Batch_id=117 Accuracy=98.17: 100%|██████████| 118/118 [00:20<00:00,  5.71it/s]
+Test set: Average loss: 0.0001, Accuracy: 9903/10000 (99.03%)
 Adjusting learning rate of group 0 to 5.0000e-02.
 Epoch 4
-Train: Loss=0.0126 Batch_id=117 Accuracy=98.41: 100%|██████████| 118/118 [00:21<00:00,  5.45it/s]
-Test set: Average loss: 0.0001, Accuracy: 9905/10000 (99.05%)
+Train: Loss=0.0122 Batch_id=117 Accuracy=98.40: 100%|██████████| 118/118 [00:21<00:00,  5.47it/s]
+Test set: Average loss: 0.0001, Accuracy: 9919/10000 (99.19%)
 Adjusting learning rate of group 0 to 5.0000e-02.
 Epoch 5
-Train: Loss=0.0227 Batch_id=117 Accuracy=98.64: 100%|██████████| 118/118 [00:20<00:00,  5.88it/s]
-Test set: Average loss: 0.0001, Accuracy: 9917/10000 (99.17%)
-Adjusting learning rate of group 0 to 5.0000e-02.
+Train: Loss=0.0082 Batch_id=117 Accuracy=98.58: 100%|██████████| 118/118 [00:21<00:00,  5.55it/s]
+Test set: Average loss: 0.0001, Accuracy: 9916/10000 (99.16%)
 
 .......................
 .......................
@@ -160,29 +159,29 @@ Adjusting learning rate of group 0 to 5.0000e-02.
 .......................
 
 Epoch 15
-Train: Loss=0.0209 Batch_id=117 Accuracy=99.29: 100%|██████████| 118/118 [00:21<00:00,  5.54it/s]
-Test set: Average loss: 0.0000, Accuracy: 9952/10000 (99.52%)
+Train: Loss=0.0088 Batch_id=117 Accuracy=99.26: 100%|██████████| 118/118 [00:22<00:00,  5.34it/s]
+Test set: Average loss: 0.0000, Accuracy: 9955/10000 (99.55%)
 Adjusting learning rate of group 0 to 5.0000e-03.
 Epoch 16
-Train: Loss=0.0331 Batch_id=117 Accuracy=99.29: 100%|██████████| 118/118 [00:20<00:00,  5.85it/s]
-Test set: Average loss: 0.0000, Accuracy: 9956/10000 (99.56%)
+Train: Loss=0.0227 Batch_id=117 Accuracy=99.22: 100%|██████████| 118/118 [00:20<00:00,  5.64it/s]
+Test set: Average loss: 0.0000, Accuracy: 9955/10000 (99.55%)
 Adjusting learning rate of group 0 to 5.0000e-03.
 Epoch 17
-Train: Loss=0.0263 Batch_id=117 Accuracy=99.29: 100%|██████████| 118/118 [00:20<00:00,  5.78it/s]
-Test set: Average loss: 0.0000, Accuracy: 9959/10000 (99.59%)
+Train: Loss=0.0294 Batch_id=117 Accuracy=99.30: 100%|██████████| 118/118 [00:20<00:00,  5.63it/s]
+Test set: Average loss: 0.0000, Accuracy: 9956/10000 (99.56%)
 Adjusting learning rate of group 0 to 5.0000e-03.
 Epoch 18
-Train: Loss=0.0497 Batch_id=117 Accuracy=99.29: 100%|██████████| 118/118 [00:21<00:00,  5.43it/s]
-Test set: Average loss: 0.0000, Accuracy: 9958/10000 (99.58%)
+Train: Loss=0.0284 Batch_id=117 Accuracy=99.29: 100%|██████████| 118/118 [00:21<00:00,  5.41it/s]
+Test set: Average loss: 0.0000, Accuracy: 9959/10000 (99.59%)
 Adjusting learning rate of group 0 to 5.0000e-03.
 Epoch 19
-Train: Loss=0.0351 Batch_id=117 Accuracy=99.31: 100%|██████████| 118/118 [00:21<00:00,  5.52it/s]
+Train: Loss=0.0075 Batch_id=117 Accuracy=99.28: 100%|██████████| 118/118 [00:22<00:00,  5.28it/s]
 Test set: Average loss: 0.0000, Accuracy: 9958/10000 (99.58%)
 Adjusting learning rate of group 0 to 5.0000e-03.
 
 ```
 
-The model achieves a validation accuracy of 99.58% in just 19 epochs, demonstrating the effectiveness of the architecture in learning from the MNIST dataset. The loss and accuracy plots illustrate the model's learning progress, with the validation accuracy consistently improving over the training epochs.
+The model achieves a validation accuracy of 99.58% in just 19 epochs, demonstrating the effectiveness of the architecture in learning from the MNIST dataset, including less overfitting of the model. The loss and accuracy plots illustrate the model's learning progress, with the validation accuracy consistently improving over the training epochs.
 
-
+![Loss and Accuracy Plots](https://github.com/aakashvardhan/s6-backprop/blob/main/Part%202/model-performance.png)
 
